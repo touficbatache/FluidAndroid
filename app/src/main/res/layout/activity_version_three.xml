@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".old.OldMainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:text="Version 3"
+        android:textAppearance="?attr/textAppearanceHeadline6" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="270dp"
+        android:layout_height="540dp"
+        android:layout_gravity="center"
+        app:cardCornerRadius="17dp"
+        app:cardElevation="16dp">
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <FrameLayout
+                android:id="@+id/homeScreen"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:animateLayoutChanges="true">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/home" />
+
+            </FrameLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/appContainer"
+                android:layout_width="33.75dp"
+                android:layout_height="33.75dp"
+                app:rippleColor="@android:color/transparent"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.FluidAndroid.App"
+                tools:layout_gravity="bottom"
+                tools:translationX="68dp"
+                tools:translationY="-79.25dp">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/appIcon"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#1a73e9"
+                        android:src="@drawable/messages_icon" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/appPage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:alpha="0"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/app"
+                        android:visibility="gone" />
+
+                </FrameLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <FrameLayout
+                android:id="@+id/gestureBar"
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                android:layout_gravity="bottom"
+                android:elevation="8dp">
+
+                <ImageView
+                    android:layout_width="49.5dp"
+                    android:layout_height="1.5dp"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:layout_marginBottom="4.25dp"
+                    android:background="@color/black" />
+
+            </FrameLayout>
+
+        </FrameLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/firstTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="40dp"
+        tools:text="Y = " />
+
+    <TextView
+        android:id="@+id/secondTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="20dp"
+        tools:text="dY = 40.0" />
+
+</FrameLayout>

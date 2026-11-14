@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Demo lines for the synced lyrics screen. Debug builds use real lyrics from
+     app/src/private/res/values/demo_lyrics.xml when that local-only file exists. -->
+<resources>
+    <string-array name="demo_lyrics">
+        <item>This is a line of demo lyrics</item>
+        <item>Each line scales up when it plays</item>
+        <item>Springs make the motion feel alive</item>
+        <item>The list scrolls to keep it centred</item>
+        <item>Tap any line to jump to it</item>
+        <item>Faded lines wait their turn</item>
+        <item>Stiffness and damping set the feel</item>
+        <item>Every three seconds, the next line</item>
+        <item>Until the very last one</item>
+    </string-array>
+</resources>

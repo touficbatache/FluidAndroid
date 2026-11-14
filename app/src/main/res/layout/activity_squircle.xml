@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:padding="24dp"
+    tools:context=".app.SquircleActivity">
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elegantTextHeight="true"
+        android:justificationMode="inter_word"
+        android:text="The Squircle is the better way to round things. Instead of having sharp edges that get rounded just enough to match the corner radius, the squircle makes use of curvature continuity, meaning the rounded corner extends beyond the specified radius and smoothly integrates with the straight border. Apple uses squircles in their software and hardware."
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.batache.fluidandroid.util.squircle.SquircleView
+        android:id="@+id/squircleView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:elevation="3dp"
+        app:cornerRadius="39dp"
+        app:layout_constraintBottom_toTopOf="@id/squircleLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/description">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#0055b3" />
+
+    </com.batache.fluidandroid.util.squircle.SquircleView>
+
+    <TextView
+        android:id="@+id/squircleLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Squircle"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/cardView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/squircleView" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:cardBackgroundColor="#0055b3"
+        app:cardCornerRadius="39dp"
+        app:cardElevation="2dp"
+        app:layout_constraintBottom_toTopOf="@id/cardLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/squircleLabel" />
+
+    <TextView
+        android:id="@+id/cardLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rounded rectangle"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

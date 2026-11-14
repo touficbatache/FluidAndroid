@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".app.MainActivity">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/squircle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Squircle"
+        app:layout_constraintBottom_toTopOf="@id/insta3dTouch"
+        app:layout_constraintEnd_toStartOf="@id/homeScreenAnimation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/homeScreenAnimation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Home screen\nanimation"
+        app:layout_constraintBottom_toTopOf="@id/faceTimePip"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/squircle"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/faceTimePip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FaceTime PiP"
+        app:layout_constraintBottom_toTopOf="@id/syncedLyrics"
+        app:layout_constraintEnd_toStartOf="@id/insta3dTouch"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/homeScreenAnimation" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/insta3dTouch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Insta 3D touch"
+        app:layout_constraintBottom_toTopOf="@id/syncedLyrics"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/faceTimePip"
+        app:layout_constraintTop_toBottomOf="@id/squircle" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/syncedLyrics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Synced lyrics"
+        app:layout_constraintBottom_toTopOf="@id/jumping"
+        app:layout_constraintEnd_toStartOf="@id/bubbles"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/faceTimePip" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bubbles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bubbles"
+        app:layout_constraintBottom_toTopOf="@id/jumping"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/syncedLyrics"
+        app:layout_constraintTop_toBottomOf="@id/faceTimePip" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/jumping"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jumping"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/player"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bubbles" />
+
+<!--    <com.google.android.material.button.MaterialButton-->
+<!--        android:id="@+id/testing"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Testing"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toEndOf="@id/jumping"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/bubbles" />-->
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/player"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Player"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/jumping"
+        app:layout_constraintTop_toBottomOf="@id/bubbles" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

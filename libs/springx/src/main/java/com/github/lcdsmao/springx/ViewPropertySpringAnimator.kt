@@ -1,0 +1,425 @@
+package com.github.lcdsmao.springx
+
+import android.view.View
+import android.view.ViewGroup
+import androidx.annotation.MainThread
+import androidx.core.view.updateLayoutParams
+import androidx.dynamicanimation.animation.DynamicAnimation
+import androidx.dynamicanimation.animation.FloatPropertyCompat
+import androidx.dynamicanimation.animation.SpringAnimation
+import androidx.dynamicanimation.animation.SpringForce
+
+class ViewPropertySpringAnimator<T : View>(
+  private val view: T
+) {
+
+  interface AnimatorListener<T : View> {
+    fun onAnimationStart(animator: ViewPropertySpringAnimator<T>) {}
+    fun onAnimationCancel(animator: ViewPropertySpringAnimator<T>) {}
+    fun onAnimationEnd(animator: ViewPropertySpringAnimator<T>) {}
+  }
+
+  private val pendingAnimations = mutableListOf<SpringAnimationHolder>()
+
+  // Contains pending animations and running animations
+  private val animatorMap = mutableMapOf<FloatPropertyCompat<in T>, SpringAnimation>()
+  val isRunning: Boolean
+    get() = animatorMap.values.any { it.isRunning }
+
+  private var defaultDampingRatio: Float = SpringForce.DAMPING_RATIO_MEDIUM_BOUNCY
+  private var defaultStiffness: Float = SpringForce.STIFFNESS_MEDIUM
+  private var animatorListener: AnimatorListener<T>? = null
+
+  fun defaultDampingRatio(value: Float) = apply {
+    defaultDampingRatio = value
+  }
+
+  fun defaultStiffness(value: Float) = apply {
+    defaultStiffness = value
+  }
+
+  fun x(
+    value: Float,
+    config: SpringAnimationConfig.() -> Unit = {}
+  ): ViewPropertySpringAnimator<T> =
+    animateProperty(DynamicAnimation.X, value, config)
+
+  /**
+   * Eager evaluate the final value from the current value.
+   */
+  fun xBy(
+    value: Float,
+    config: SpringAnimationConfig.() -> Unit = {}
+  ): ViewPropertySpringAnimator<T> =
+    animatePropertyBy(DynamicAnimation.X, value, config)
+
+  fun y(
+    value: Float,
+    config: SpringAnimationConfig.() -> Unit = {}
+  ): ViewPropertySpringAnimator<T> =
+    animateProperty(DynamicAnimation.Y, value, config)
+
+  /**
+   * Eager evaluate the final value from the current value.
+   */
+  fun yBy(
+    value: Float,
+    config: SpringAnimationConfig.() -> Unit = {}
+  ): ViewPropertySpringAnimator<T> =
+    animatePropertyBy(DynamicAnimation.Y, value, config)
+
+  fun z(
+    value: Float,
+    config: SpringAnimationConfig.() -> Unit = {}
+  ): ViewPropertySpringAnimator<T> =
+    animateProperty(DynamicAnimation.Z, value, config)
+
+  /**
+   * Eager evaluate the final value from the current value.
+   */
+  fun zBy(
+    value: Float,
+    config: SpringAnimationConfig.() -> Unit = {}
+  ): ViewPropertySpringAnimator<T> =
+    animatePropertyBy(DynamicAnimation.Z, value, config)
+
+  fun rotation(
+    value: Float,
+    config: SpringAnimationConfig.() -> Unit = {}
+  ): ViewPropertySpringAnimator<T> =
+    animateProperty(DynamicAnimation.ROTATION, value, config)
+
+  /**
+   * Eager evaluate the final value from the current value.
+   */
+  fun rotationBy(
+    value: Float,
+    config: SpringAnimationConfig.() -> Unit = {}
+  ): ViewPropertySpringAnimator<T> =
+    animatePropertyBy(DynamicAnimation.ROTATION, value, config)
+
+  fun rotationX(
+    value: Float,
+    config: SpringAnimationConfig.() -> Unit = {}
+  ): ViewPropertySpringAnimator<T> =
+    animateProperty(DynamicAnimation.ROTATION_X, value, config)
+
+  /**
+   * Eager evaluate the final value from the current value.
+   */
+  fun rotationXBy(
+    value: Float,
+    config: SpringAnimationConfig.() -> Unit = {}
+  ): ViewPropertySpringAnimator<T> =
+    animatePropertyBy(DynamicAnimation.ROTATION_X, value, config)
+
+  fun rotationY(
+    value: Float,
+    config: SpringAnimationConfig.() -> Unit = {}
+  ): ViewPropertySpringAnimator<T> =
+    animateProperty(DynamicAnimation.ROTATION_Y, value, config)
+
+  /**
+   * Eager evaluate the final value from the current value.
+   */
+  fun rotationYBy(
+    value: Float,
+    config: SpringAnimationConfig.() -> Unit = {}
+  ): ViewPropertySpringAnimator<T> =
+    animatePropertyBy(DynamicAnimation.ROTATION_Y, value, config)
+
+  fun translationX(
+    value: Float,
+    config: SpringAnimationConfig.() -> Unit = {}
+  ): ViewPropertySpringAnimator<T> =
+    animateProperty(DynamicAnimation.TRANSLATION_X, value, config)
+
+  /**
+   * Eager evaluate the final value from the current value.
+   */
+  fun translationXBy(
+    value: Float,
+    config: SpringAnimationConfig.() -> Unit = {}
+  ): ViewPropertySpringAnimator<T> =
+    animatePropertyBy(DynamicAnimation.TRANSLATION_X, value, config)
+
+  fun translationY(
+    value: Float,
+    config: SpringAnimationConfig.() -> Unit = {}
+  ): ViewPropertySpringAnimator<T> =
+    animateProperty(DynamicAnimation.TRANSLATION_Y, value, config)
+
+  /**
+   * Eager evaluate the final value from the current value.
+   */
+  fun translationYBy(
+    value: Float,
+    config: SpringAnimationConfig.() -> Unit = {}
+  ): ViewPropertySpringAnimator<T> =
+    animatePropertyBy(DynamicAnimation.TRANSLATION_Y, value, config)
+
+  fun translationZ(
+    value: Float,
+    config: SpringAnimationConfig.() -> Unit = {}
+  ): ViewPropertySpringAnimator<T> =
+    animateProperty(DynamicAnimation.TRANSLATION_Z, value, config)
+
+  /**
+   * Eager evaluate the final value from the current value.
+   */
+  fun translationZBy(
+    value: Float,
+    config: SpringAnimationConfig.() -> Unit = {}
+  ): ViewPropertySpringAnimator<T> =
+    animatePropertyBy(DynamicAnimation.TRANSLATION_Z, value, config)
+
+  fun scaleX(
+    value: Float,
+    config: SpringAnimationConfig.() -> Unit = {}
+  ): ViewPropertySpringAnimator<T> =
+    animateProperty(DynamicAnimation.SCALE_X, value, config)
+
+  /**
+   * Eager evaluate the final value from the current value.
+   */
+  fun scaleXBy(
+    value: Float,
+    config: SpringAnimationConfig.() -> Unit = {}
+  ): ViewPropertySpringAnimator<T> =
+    animatePropertyBy(DynamicAnimation.SCALE_X, value, config)
+
+  fun scaleY(
+    value: Float,
+    config: SpringAnimationConfig.() -> Unit = {}
+  ): ViewPropertySpringAnimator<T> =
+    animateProperty(DynamicAnimation.SCALE_Y, value, config)
+
+  /**
+   * Eager evaluate the final value from the current value.
+   */
+  fun scaleYBy(
+    value: Float,
+    config: SpringAnimationConfig.() -> Unit = {}
+  ): ViewPropertySpringAnimator<T> =
+    animatePropertyBy(DynamicAnimation.SCALE_Y, value, config)
+
+  fun alpha(
+    value: Float,
+    config: SpringAnimationConfig.() -> Unit = {}
+  ): ViewPropertySpringAnimator<T> =
+    animateProperty(DynamicAnimation.ALPHA, value, config)
+
+  /**
+   * Eager evaluate the final value from the current value.
+   */
+  fun alphaBy(
+    value: Float,
+    config: SpringAnimationConfig.() -> Unit = {}
+  ): ViewPropertySpringAnimator<T> =
+    animatePropertyBy(DynamicAnimation.ALPHA, value, config)
+
+  fun width(
+    value: Float,
+    config: SpringAnimationConfig.() -> Unit = {}
+  ): ViewPropertySpringAnimator<T> =
+    animateProperty(WIDTH, value, config)
+
+  /**
+   * Eager evaluate the final value from the current value.
+   */
+  fun widthBy(
+    value: Float,
+    config: SpringAnimationConfig.() -> Unit = {}
+  ): ViewPropertySpringAnimator<T> =
+    animatePropertyBy(WIDTH, value, config)
+
+  fun height(
+    value: Float,
+    config: SpringAnimationConfig.() -> Unit = {}
+  ): ViewPropertySpringAnimator<T> =
+    animateProperty(HEIGHT, value, config)
+
+  /**
+   * Eager evaluate the final value from the current value.
+   */
+  fun heightBy(
+    value: Float,
+    config: SpringAnimationConfig.() -> Unit = {}
+  ): ViewPropertySpringAnimator<T> =
+    animatePropertyBy(HEIGHT, value, config)
+
+  /**
+   * A new [SpringAnimation] will be created every time you call this method.
+   */
+  fun animateProperty(
+    value: Float,
+    setter: T.(Float) -> Unit,
+    getter: T.() -> Float,
+    config: SpringAnimationConfig.() -> Unit = {}
+  ): ViewPropertySpringAnimator<T> =
+    animateProperty(createCustomProperty(setter, getter), value, config)
+
+  /**
+   * Eager evaluate the final value from the current value.
+   * A new [SpringAnimation] will be created every time you call this method.
+   */
+  fun animatePropertyBy(
+    setter: T.(Float) -> Unit,
+    getter: T.() -> Float,
+    value: Float,
+    config: SpringAnimationConfig.() -> Unit = {}
+  ): ViewPropertySpringAnimator<T> =
+    animatePropertyBy(createCustomProperty(setter, getter), value, config)
+
+  fun animateProperty(
+    property: FloatPropertyCompat<in T>,
+    value: Float,
+    config: SpringAnimationConfig.() -> Unit = {}
+  ) = apply {
+    animatePropertyInternal(property, value, config)
+  }
+
+  /**
+   * Eager evaluate the final value from the current value.
+   */
+  fun animatePropertyBy(
+    property: FloatPropertyCompat<in T>,
+    value: Float,
+    config: SpringAnimationConfig.() -> Unit = {}
+  ) = apply {
+    animatePropertyInternal(property, value + property.getValue(view), config)
+  }
+
+  @MainThread
+  fun start(): ViewPropertySpringAnimator<T> = apply {
+    if (pendingAnimations.isEmpty()) return@apply
+    val animations = pendingAnimations.toList()
+    pendingAnimations.clear()
+    animatorListener?.onAnimationStart(this)
+    animations.forEach { it.start() }
+  }
+
+  @MainThread
+  fun cancel() {
+    pendingAnimations.clear()
+    val animations = animatorMap.values.toList()
+    animatorMap.clear()
+    animations.forEach { it.cancel() }
+    animatorListener?.onAnimationCancel(this)
+  }
+
+  @MainThread
+  fun skipToEnd() {
+    pendingAnimations.clear()
+    val animations = animatorMap.values.toList()
+    animations.filter { it.canSkipToEnd() }
+      .forEach { it.skipToEnd() }
+  }
+
+  fun setListener(
+    onStart: (animator: ViewPropertySpringAnimator<T>) -> Unit = {},
+    onCancel: (animator: ViewPropertySpringAnimator<T>) -> Unit = {},
+    onEnd: (animator: ViewPropertySpringAnimator<T>) -> Unit = {}
+  ) = setListener(object : AnimatorListener<T> {
+    override fun onAnimationStart(animator: ViewPropertySpringAnimator<T>) {
+      onStart(animator)
+    }
+
+    override fun onAnimationCancel(animator: ViewPropertySpringAnimator<T>) {
+      onCancel(animator)
+    }
+
+    override fun onAnimationEnd(animator: ViewPropertySpringAnimator<T>) {
+      onEnd(animator)
+    }
+  })
+
+  fun setListener(listener: AnimatorListener<T>?) = apply {
+    this.animatorListener = listener
+  }
+
+  fun removeUpdateListener(listener: DynamicAnimation.OnAnimationUpdateListener) {
+    animatorMap.forEach { (_, animation) ->
+      animation.removeUpdateListener(listener)
+    }
+  }
+
+  fun removeEndListener(listener: DynamicAnimation.OnAnimationEndListener) {
+    animatorMap.forEach { (_, animation) ->
+      animation.removeEndListener(listener)
+    }
+  }
+
+  private fun createCustomProperty(
+    setter: T.(Float) -> Unit,
+    getter: T.() -> Float
+  ) = object : FloatPropertyCompat<T>("CustomProperty") {
+    override fun getValue(view: T): Float {
+      return getter.invoke(view)
+    }
+
+    override fun setValue(view: T, value: Float) {
+      setter.invoke(view, value)
+    }
+  }
+
+  private fun animatePropertyInternal(
+    property: FloatPropertyCompat<in T>,
+    finalValue: Float,
+    configBuilder: SpringAnimationConfig.() -> Unit = {}
+  ) {
+    var anim = animatorMap[property]
+    if (anim == null) {
+      anim = SpringAnimation(view, property)
+      anim.cleanSelfOnEnd(property)
+      animatorMap[property] = anim
+    }
+    val config = SpringAnimationConfig(finalValue).apply(configBuilder)
+    config.defaultDampingRatio = defaultDampingRatio
+    config.defaultStiffness = defaultStiffness
+    pendingAnimations += SpringAnimationHolder(anim, config)
+  }
+
+  private fun SpringAnimation.cleanSelfOnEnd(
+    property: FloatPropertyCompat<in T>
+  ) {
+    val listener = object : DynamicAnimation.OnAnimationEndListener {
+      override fun onAnimationEnd(
+        animation: DynamicAnimation<out DynamicAnimation<*>>?,
+        canceled: Boolean,
+        value: Float,
+        velocity: Float
+      ) {
+        animatorMap.remove(property)
+        animation?.removeEndListener(this)
+
+        if (animatorMap.isEmpty() && !canceled) {
+          animatorListener?.onAnimationEnd(this@ViewPropertySpringAnimator)
+        }
+      }
+    }
+    addEndListener(listener)
+  }
+
+  companion object {
+    private val WIDTH = object : FloatPropertyCompat<View>("width") {
+      override fun setValue(view: View, value: Float) {
+        view.updateLayoutParams<ViewGroup.LayoutParams> { width = value.toInt() }
+      }
+
+      override fun getValue(view: View): Float {
+        return view.measuredWidth.toFloat()
+      }
+    }
+
+    private val HEIGHT = object : FloatPropertyCompat<View>("height") {
+      override fun setValue(view: View, value: Float) {
+        view.updateLayoutParams<ViewGroup.LayoutParams> { height = value.toInt() }
+      }
+
+      override fun getValue(view: View): Float {
+        return view.measuredHeight.toFloat()
+      }
+    }
+  }
+}

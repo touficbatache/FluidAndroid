@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Placeholder. The original image is kept locally in app/src/private/res (gitignored). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="340dp"
+    android:height="255dp"
+    android:viewportWidth="340"
+    android:viewportHeight="255">
+    <path android:fillColor="#FFFFF3E0" android:pathData="M0,0h340v255h-340z" />
+    <path android:fillColor="#FFFFCC80" android:pathData="M170,127m-63,0a63,63 0,1 1,127,0a63,63 0,1 1,-127,0z" />
+</vector>

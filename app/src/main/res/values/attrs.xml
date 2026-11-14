@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr format="dimension" name="cornerRadius" />
+
+    <declare-styleable name="SquircleView">
+        <attr name="cornerRadius" />
+    </declare-styleable>
+
+    <declare-styleable name="SquircleImageView">
+        <attr name="cornerRadius" />
+    </declare-styleable>
+</resources>

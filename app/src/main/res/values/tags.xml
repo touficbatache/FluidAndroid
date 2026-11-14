@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="CORNER_RADIUS" type="id"/>
+    <item name="HSA_ALPHA" type="id"/>
+    <item name="SCROLL_Y" type="id"/>
+</resources>

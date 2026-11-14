@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0e0a0d"
+    tools:context=".old.AccelerationPausingActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Displacement: "
+                android:textAppearance="?attr/textAppearanceButton"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:id="@+id/displacementTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceButton"
+                android:textColor="#ffffff"
+                tools:text="40" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Velocity: "
+                android:textAppearance="?attr/textAppearanceButton"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:id="@+id/velocityTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceButton"
+                android:textColor="#ffffff"
+                tools:text="40" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="deltaT: "
+                android:textAppearance="?attr/textAppearanceButton"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:id="@+id/deltaTTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceButton"
+                android:textColor="#ffffff"
+                tools:text="40" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/animatedView"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_gravity="center"
+        android:alpha="0"
+        app:cardBackgroundColor="#51FFEA"
+        app:cardCornerRadius="28dp"
+        app:cardElevation="16dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/showBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="100dp"
+        android:text="Show" />
+
+</FrameLayout>

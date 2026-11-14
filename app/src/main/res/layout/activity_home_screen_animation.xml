@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".app.home_screen_animation.HomeScreenAnimationActivity">
+
+    <!-- layout_marginVertical="40dp" for pixel 3 -->
+    <com.batache.fluidandroid.util.squircle.SquircleView
+        android:id="@+id/phone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="73dp"
+        android:elevation="3dp"
+        app:cornerRadius="39dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <FrameLayout
+                android:id="@+id/homeScreen"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <ImageView
+                    android:id="@+id/appFakeBackground"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/home" />
+
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="40dp"
+                    android:layout_marginTop="24dp"
+                    android:background="@color/black"
+                    android:elegantTextHeight="true"
+                    android:justificationMode="inter_word"
+                    android:gravity="center_horizontal"
+                    android:text="Click on the messages app to open it, swipe up to close, swipe and wait for overview.\n\nTry to close the app before it fully opens, this animation is interruptible."
+                    android:textColor="@color/white" />
+
+                <FrameLayout
+                    android:id="@+id/overlay"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:alpha="0">
+
+                    <ImageView
+                        android:id="@+id/overlayBlur"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:alpha="0.1"
+                        android:background="#000" />
+
+                </FrameLayout>
+
+            </FrameLayout>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/icon_guideline_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="557dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/icon_guideline_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.25" />
+
+            <com.batache.fluidandroid.util.squircle.TopCropSquircleImageView
+                android:id="@+id/app"
+                android:layout_width="44.75dp"
+                android:layout_height="44.75dp"
+                android:src="@drawable/app"
+                app:layout_constraintStart_toStartOf="@id/icon_guideline_horizontal"
+                app:layout_constraintTop_toTopOf="@id/icon_guideline_vertical" />
+
+            <com.batache.fluidandroid.util.squircle.SquircleImageView
+                android:id="@+id/icon"
+                android:layout_width="44.75dp"
+                android:layout_height="44.75dp"
+                android:background="#1a73e9"
+                android:scaleType="fitStart"
+                android:src="@drawable/messages_icon"
+                app:layout_constraintStart_toStartOf="@id/icon_guideline_horizontal"
+                app:layout_constraintTop_toTopOf="@id/icon_guideline_vertical" />
+
+            <FrameLayout
+                android:id="@+id/gestureBar"
+                android:layout_width="match_parent"
+                android:layout_height="31dp"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="1.75dp"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:layout_marginBottom="5.5dp"
+                    android:background="@color/black" />
+
+            </FrameLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.batache.fluidandroid.util.squircle.SquircleView>
+
+    <TextView
+        android:id="@+id/yValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="#000"
+        android:elevation="10dp"
+        android:textAppearance="?attr/textAppearanceHeadline6"
+        android:textColor="#fff"
+        tools:text="y = 300" />
+
+    <TextView
+        android:id="@+id/label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="16dp"
+        android:elegantTextHeight="true"
+        android:justificationMode="inter_word"
+        android:text="This is a squircle" />
+
+</FrameLayout>
