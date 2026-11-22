@@ -10,9 +10,9 @@ Written in Kotlin with Android's `DynamicAnimation` springs and flings, plus a s
 - **Home screen animation:** an app-opening transition that grows the icon into a full-screen window with rounded corners.
 - **FaceTime PiP:** a draggable picture-in-picture window that you can fling to any corner, with velocity projection deciding where it lands.
 - **Insta 3D touch:** a press-and-hold photo preview that springs up over a blurred background.
-- **Synced lyrics:** a lyrics view where the current line springs into focus and the list follows it.
+- **Synced lyrics:** a lyrics view where the current line springs into focus while the others fade back.
 - **Bubbles:** a menu of categories laid out as bubbles.
-- **Jumping:** a view you fling that settles with fling and spring physics.
+- **Jumping:** a view you drag and throw, which carries the throw's velocity into a slow spring back to rest.
 - **Player:** a music player screen with blurred artwork.
 
 The `old/` package keeps earlier iterations (fling and chart experiments, versions one to five) for reference.
